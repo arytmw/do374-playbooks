@@ -1,0 +1,10 @@
+---
+- name: install webserver package
+  hosts: all
+  become: true
+  remote_user: sysadmin
+  tasks:
+    - name: install httpd package
+      ansible.builtin.yum:
+        name: httpd
+        state: present
