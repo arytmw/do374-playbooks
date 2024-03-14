@@ -1,0 +1,18 @@
+---
+- name: special tags
+  hosts: all
+  become: true
+  remote_user: student
+  tasks:
+    - name: reboot system
+      ansible.builtin.reboot:
+      tags:
+        - never
+
+    - name: start and enable firewall
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+      tags:
+        - always
