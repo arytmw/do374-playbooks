@@ -1,0 +1,32 @@
+---
+- name: understanding tags
+  hosts: all
+  remote_user: student
+  become: true
+  tasks:
+    - name: update system
+      ansible.builtin.yum:
+        name: "*"
+        state: latest
+      tags: 
+        - update
+        - install
+
+    - name: install apache
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+      tags: install
+
+    - name: start and enable httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+      tags: service
+
+    - name: create index.html
+      ansible.builtin.copy:
+        content: "hello navigator\n"
+        dest: /var/www/html/index.html
+      tags: index
