@@ -1,7 +1,6 @@
 ---
 - name: simple print msg playbook
   hosts: all
-  remote_user: sysadmin
   tasks:
     - name: display message hello world
       ansible.builtin.debug:
